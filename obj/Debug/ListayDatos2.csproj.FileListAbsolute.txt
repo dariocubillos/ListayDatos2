@@ -1,0 +1,12 @@
+C:\Users\DuendeX\source\repos\ListayDatos2\bin\Debug\ListayDatos2.exe
+C:\Users\DuendeX\source\repos\ListayDatos2\bin\Debug\ListayDatos2.pdb
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.csprojAssemblyReference.cache
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.Properties.Resources.resources
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.csproj.GenerateResource.cache
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.csproj.CoreCompileInputs.cache
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.exe
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.pdb
+C:\Users\DuendeX\source\repos\ListayDatos2\bin\Debug\ListayDatos2.exe.config
+C:\Users\DuendeX\source\repos\ListayDatos2\bin\Debug\MySql.Data.dll
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.Form1.resources
+C:\Users\DuendeX\source\repos\ListayDatos2\obj\Debug\ListayDatos2.csproj.CopyComplete
