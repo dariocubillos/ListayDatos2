@@ -1,0 +1,13 @@
+{
+  "User": {
+    "Id": 3,
+    "Username": "dariocubillos",
+    "Name": "dariocubillos",
+    "Email": "nateriver461@gmail.com",
+    "AvatarUrl": "http://www.gravatar.com/avatar/4f420891073975037dce465f43087aac?s=80&d=identicon",
+    "PrivateToken": "b7e90e8907a9c4e5ace55df0fbc78c4e48387a04a6a69d9825450db9717835e4",
+    "Host": "http://192.168.1.138",
+    "TwoFactorEnabled": false,
+    "ApiVersion": 3
+  }
+}
