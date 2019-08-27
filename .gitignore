@@ -28,3 +28,6 @@ obj/Debug/ListayDatos2.csproj.CoreCompileInputs.cache
 bin/Debug/ListayDatos2.pdb
 bin/Debug/ListayDatos2.exe
 *.exe
+obj/Debug/ListayDatos2.pdb
+*.pdb
+*.exe
