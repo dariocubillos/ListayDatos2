@@ -31,3 +31,4 @@ bin/Debug/ListayDatos2.exe
 obj/Debug/ListayDatos2.pdb
 *.pdb
 *.exe
+obj/*
