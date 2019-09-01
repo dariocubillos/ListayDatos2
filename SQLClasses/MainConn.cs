@@ -64,8 +64,25 @@ namespace ListayDatos2.SQLClasses
 
         public bool ExecuteQuery( string query)
         {
+            MySqlDataAdapter da = new MySqlDataAdapter();
 
-            return false;
+            try
+            {
+                conn = new MySqlConnection(ConnString());
+                conn.Open();
+                da = new MySqlDataAdapter(query, conn);
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+                return false;
+            }
+
+
+            return true;
         }
 
 

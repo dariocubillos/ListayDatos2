@@ -4,3 +4,7 @@
 .vs/ListayDatos2/v16/.suo
 .vs/ListayDatos2/v16/Server/sqlite3/storage.ide
 .vs/ListayDatos2/v16/Server/sqlite3/storage.ide-wal
+.vs/ListayDatos2/v15/.suo
+obj
+/.vs
+/bin
