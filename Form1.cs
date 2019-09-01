@@ -18,51 +18,31 @@ namespace ListayDatos2
 
         public Form1()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            // Set the MaximizeBox to false to remove the maximize box.
+            this.MaximizeBox = false;
+            // Set the start position of the form to the center of the screen.
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-
-
             MainConn NewConObj = new MainConn();
-
-            MySqlDataAdapter ObjAdapterZapatos = NewConObj.ExecuteQueryAndGetData("SELECT * FROM zapatos");
-            MySqlDataAdapter ObjAdapterTallas = NewConObj.ExecuteQueryAndGetData("SELECT * FROM tallas");
-
+            MySqlDataAdapter ObjAdapterZapatos = NewConObj.ExecuteQueryAndGetData("SELECT * FROM zapatosyexists");
             this.MainGrid.Visible = true;
-            this.MainGrid.AutoGenerateColumns = true;
-            
+            this.MainGrid.AutoGenerateColumns = true;            
             // 'zapatos' All Shoes whitout number of shoes , 'tallas' Table numbers of Shoes
-            this.MainGrid.DataSource = GetDataTableMain(NewConObj.DataMySqlToDataTable(ObjAdapterZapatos , 
-                                       "zapatos"), NewConObj.DataMySqlToDataTable(ObjAdapterTallas, "tallas"));
-
+            this.MainGrid.DataSource =  NewConObj.DataMySqlToDataTable(ObjAdapterZapatos, "zapatosyexists");
             this.HideColumnsMainTable();
+            this.AutoSizeColums();
+            this.AddItemsShow();
 
 
         }
-
-        protected DataTable GetDataTableMain(DataTable Zapatos, DataTable Tallas)
+        protected void AddItemsShow()
         {
-            Zapatos.Columns.Add("Existencia", typeof(int));
-
-
-            foreach (DataRow DataRowZapato in Zapatos.Rows)
-            {
-                int countexist = 0;
-
-                foreach (DataRow DataRowZapatoTallas in Tallas.Rows)
-                {
-                    if (Int32.Parse(DataRowZapatoTallas["idZapato"].ToString()) == Int32.Parse(DataRowZapato["idZapato"].ToString()) && Int32.Parse(DataRowZapatoTallas["Existencia"].ToString()) != 0)
-                    {
-                        countexist += Int32.Parse(DataRowZapatoTallas["Existencia"].ToString());
-                    }
-
-                }
-
-                DataRowZapato["Existencia"] = countexist;
-
-            }
-
-            return Zapatos;
+            ShowByItems.Items.Add("Todos");
+            ShowByItems.Items.Add("Sin Existencia");
+            ShowByItems.Items.Add("Baja existencia");
+            ShowByItems.SelectedIndex = 0;
         }
-
 
         protected  void HideColumnsMainTable()
         {
@@ -79,6 +59,13 @@ namespace ListayDatos2
             }
         }
 
+        protected void AutoSizeColums()
+        {
+            MainGrid.Width =
+            MainGrid.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width)
+            + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
+
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
