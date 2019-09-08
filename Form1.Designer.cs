@@ -71,9 +71,9 @@
             this.BuscarLabel.AutoSize = true;
             this.BuscarLabel.Location = new System.Drawing.Point(9, 9);
             this.BuscarLabel.Name = "BuscarLabel";
-            this.BuscarLabel.Size = new System.Drawing.Size(98, 13);
+            this.BuscarLabel.Size = new System.Drawing.Size(96, 13);
             this.BuscarLabel.TabIndex = 3;
-            this.BuscarLabel.Text = "Buscar por modelo:";
+            this.BuscarLabel.Text = "Buscar por codigo:";
             // 
             // showby
             // 

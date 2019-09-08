@@ -25,17 +25,47 @@ namespace ListayDatos2
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             MainConn NewConObj = new MainConn();
+            if (NewConObj.TestCon())
+            {
+                this.StartMainTable();
+            }
+            else
+            {   
+                while (!NewConObj.TestCon())
+                {
+                    DialogResult dr = MessageBox.Show("Error no se encuentra la base de datos desea volver " +
+                                      "¿Desea volver a intentar conectarse?", "Error", MessageBoxButtons.YesNo
+                                      ,MessageBoxIcon.Exclamation , MessageBoxDefaultButton.Button1);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        System.Environment.Exit(1);
+                    }
+                }
+
+                this.StartMainTable();
+
+            }
+
+        }
+
+        protected void StartMainTable()
+        {
+            MainConn NewConObj = new MainConn();
             MySqlDataAdapter ObjAdapterZapatos = NewConObj.ExecuteQueryAndGetData("SELECT * FROM zapatosyexists");
             this.MainGrid.Visible = true;
-            this.MainGrid.AutoGenerateColumns = true;            
+            this.MainGrid.AutoGenerateColumns = true;
             // 'zapatos' All Shoes whitout number of shoes , 'tallas' Table numbers of Shoes
-            this.MainGrid.DataSource =  NewConObj.DataMySqlToDataTable(ObjAdapterZapatos, "zapatosyexists");
+            this.MainGrid.DataSource = NewConObj.DataMySqlToDataTable(ObjAdapterZapatos, "zapatosyexists");
             this.HideColumnsMainTable();
             this.AutoSizeColums();
             this.AddItemsShow();
-
-
         }
+
         protected void AddItemsShow()
         {
             ShowByItems.Items.Add("Todos");

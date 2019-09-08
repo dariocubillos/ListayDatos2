@@ -60,8 +60,23 @@ namespace ListayDatos2.SQLClasses
             System.Configuration.Configuration ConfigManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             ConfigManager.AppSettings.Settings[Key].Value = Value;
             ConfigManager.Save(ConfigurationSaveMode.Modified);
-        }        
+        }
 
+        public bool TestCon()
+        {
+            try
+            {
+                conn = new MySqlConnection(ConnString());
+                conn.Open();
+                conn.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Error Conn");
+                return false;
+            }
+        }
         public bool ExecuteQuery( string query)
         {
             MySqlDataAdapter da = new MySqlDataAdapter();
