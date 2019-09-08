@@ -33,9 +33,8 @@ namespace ListayDatos2
             {   
                 while (!NewConObj.TestCon())
                 {
-                    DialogResult dr = MessageBox.Show("Error no se encuentra la base de datos desea volver " +
-                                      "¿Desea volver a intentar conectarse?", "Error", MessageBoxButtons.YesNo
-                                      ,MessageBoxIcon.Exclamation , MessageBoxDefaultButton.Button1);
+                    DialogResult dr = AlertGenericYesNo("Error no se encuentra la base de datos desea volver " +
+                                                        "¿Desea volver a intentar conectarse?", "Error");
 
                     if (dr == DialogResult.Yes)
                     {
@@ -96,17 +95,13 @@ namespace ListayDatos2
             + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
 
         }
-        private void SearchModel()
-        {
-
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
 
         }
-
 
         private void SearchModel(object sender, EventArgs e)
         {
@@ -149,7 +144,57 @@ namespace ListayDatos2
 
         private void DeleteShoe_Click(object sender, EventArgs e)
         {
+            DataGridViewSelectedRowCollection selectionCol = (DataGridViewSelectedRowCollection)MainGrid.SelectedRows;
 
+            string code = string.Empty;
+            int numshoes = -1;
+
+            if (selectionCol.Count == 1)
+            {
+                 code = GetIDSelectedOneRowTableView().ToString();
+
+                //get one items for delete one row
+
+                DialogResult dr = AlertGenericYesNo("Desea eliminar el el zapato " +
+                                                    "con el codigo: "+ code + " ?","Confirmar");
+                if (dr == DialogResult.Yes)
+                {
+                }
+            }
+            else if (selectionCol.Count > 1)
+            {
+                 //get all items in this par for all rows and columns  and for delete
+
+                DialogResult dr = AlertGenericYesNo("Desea eliminar los " + numshoes + " ?", "Confirmar");
+
+                if (dr == DialogResult.Yes)
+                {
+                }
+            }
+            else
+            {
+              AlertGenericOK("Ningun zapato seleccionado ", "Alerta");
+            }
+
+        }
+
+        protected int GetIDSelectedOneRowTableView()
+        {
+             int selectedrowindex = MainGrid.SelectedCells[0].RowIndex;
+             DataGridViewRow selectedRow = MainGrid.Rows[selectedrowindex];
+             return int.Parse(selectedRow.Cells["Codigo"].Value.ToString());          
+        }        
+
+        protected DialogResult AlertGenericYesNo(string MainMessage, string Title)
+        {
+            return  MessageBox.Show(MainMessage, Title, MessageBoxButtons.YesNo
+                                    ,MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+        }
+
+        protected DialogResult AlertGenericOK(string MainMessage, string Title)
+        {
+            return MessageBox.Show(MainMessage, Title, MessageBoxButtons.OK
+                                    , MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
         }
 
         private void AddShoe_Click(object sender, EventArgs e)
@@ -157,7 +202,7 @@ namespace ListayDatos2
 
         }
 
-        private void RemoveShoe_Click(object sender, EventArgs e)
+        private void NoExistsButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -172,6 +217,6 @@ namespace ListayDatos2
 
         }
 
-
+        
     }
 }

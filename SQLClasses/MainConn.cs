@@ -73,7 +73,7 @@ namespace ListayDatos2.SQLClasses
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Error Conn");
+                Console.Out.WriteLine("Error Conn "+ ex);
                 return false;
             }
         }
