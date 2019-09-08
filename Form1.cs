@@ -96,11 +96,82 @@ namespace ListayDatos2
             + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
 
         }
+        private void SearchModel()
+        {
+
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
 
         }
+
+
+        private void SearchModel(object sender, EventArgs e)
+        {
+            TextBox model = (TextBox)sender;
+            BindingSource bs = new BindingSource();
+            bs.DataSource = MainGrid.DataSource;
+            bs.Filter = "Codigo like '%" + model.Text + "%'";
+            MainGrid.DataSource = bs;
+        }
+
+        private void SelectFilter(object sender, EventArgs e)
+        {
+            ComboBox filter = (ComboBox)sender;
+            BindingSource bs = new BindingSource();
+            bs.DataSource = MainGrid.DataSource;
+            bs.Filter = ComboFilterText(filter.SelectedItem.ToString());
+            MainGrid.DataSource = bs;
+        }
+
+        private string ComboFilterText(string FilterBox)
+        {
+            //string filter = "Existencia  '%" "%'";
+            switch (FilterBox)
+            {
+                case "Todos":
+                    return string.Empty;
+
+                case "Sin Existencia":
+                    return "Existencia = 0";
+
+                case "Baja existencia":
+                    return "Existencia < 3 AND Existencia > 0";
+
+                default:
+                    return string.Empty;
+            }
+
+
+        }
+
+        private void DeleteShoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddShoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveShoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfigShoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OptionsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
