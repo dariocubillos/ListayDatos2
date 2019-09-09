@@ -1,6 +1,6 @@
 ﻿namespace ListayDatos2
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -32,7 +32,7 @@
             this.showby = new System.Windows.Forms.Label();
             this.ShowByItems = new System.Windows.Forms.ComboBox();
             this.NoExistsButton = new System.Windows.Forms.Button();
-            this.AddShoe = new System.Windows.Forms.Button();
+            this.UpdateTableShoes = new System.Windows.Forms.Button();
             this.ConfigShoe = new System.Windows.Forms.Button();
             this.FastButtons = new System.Windows.Forms.Label();
             this.OptionsButton = new System.Windows.Forms.Button();
@@ -44,8 +44,10 @@
             this.MainGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MainGrid.Location = new System.Drawing.Point(12, 32);
             this.MainGrid.Name = "MainGrid";
+            this.MainGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainGrid.Size = new System.Drawing.Size(644, 344);
             this.MainGrid.TabIndex = 0;
+            this.MainGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.MainGrid_DataBindingComplete);
             // 
             // DeleteShoe
             // 
@@ -94,7 +96,7 @@
             // 
             // NoExistsButton
             // 
-            this.NoExistsButton.Location = new System.Drawing.Point(671, 172);
+            this.NoExistsButton.Location = new System.Drawing.Point(671, 102);
             this.NoExistsButton.Name = "NoExistsButton";
             this.NoExistsButton.Size = new System.Drawing.Size(215, 64);
             this.NoExistsButton.TabIndex = 7;
@@ -102,19 +104,19 @@
             this.NoExistsButton.UseVisualStyleBackColor = true;
             this.NoExistsButton.Click += new System.EventHandler(this.NoExistsButton_Click);
             // 
-            // AddShoe
+            // UpdateTableShoes
             // 
-            this.AddShoe.Location = new System.Drawing.Point(671, 102);
-            this.AddShoe.Name = "AddShoe";
-            this.AddShoe.Size = new System.Drawing.Size(215, 64);
-            this.AddShoe.TabIndex = 6;
-            this.AddShoe.Text = "AÑADIR UN ZAPATO";
-            this.AddShoe.UseVisualStyleBackColor = true;
-            this.AddShoe.Click += new System.EventHandler(this.AddShoe_Click);
+            this.UpdateTableShoes.Location = new System.Drawing.Point(671, 242);
+            this.UpdateTableShoes.Name = "UpdateTableShoes";
+            this.UpdateTableShoes.Size = new System.Drawing.Size(215, 64);
+            this.UpdateTableShoes.TabIndex = 6;
+            this.UpdateTableShoes.Text = "ACTUALIZAR TABLA";
+            this.UpdateTableShoes.UseVisualStyleBackColor = true;
+            this.UpdateTableShoes.Click += new System.EventHandler(this.UpdateTableShoes_Click);
             // 
             // ConfigShoe
             // 
-            this.ConfigShoe.Location = new System.Drawing.Point(671, 242);
+            this.ConfigShoe.Location = new System.Drawing.Point(671, 172);
             this.ConfigShoe.Name = "ConfigShoe";
             this.ConfigShoe.Size = new System.Drawing.Size(215, 64);
             this.ConfigShoe.TabIndex = 8;
@@ -142,7 +144,7 @@
             this.OptionsButton.UseVisualStyleBackColor = true;
             this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,14 +153,14 @@
             this.Controls.Add(this.FastButtons);
             this.Controls.Add(this.NoExistsButton);
             this.Controls.Add(this.ConfigShoe);
-            this.Controls.Add(this.AddShoe);
+            this.Controls.Add(this.UpdateTableShoes);
             this.Controls.Add(this.ShowByItems);
             this.Controls.Add(this.showby);
             this.Controls.Add(this.BuscarLabel);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.DeleteShoe);
             this.Controls.Add(this.MainGrid);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Lista y Datos";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainGrid)).EndInit();
@@ -174,7 +176,7 @@
         private System.Windows.Forms.Label showby;
         private System.Windows.Forms.ComboBox ShowByItems;
         private System.Windows.Forms.Button NoExistsButton;
-        private System.Windows.Forms.Button AddShoe;
+        private System.Windows.Forms.Button UpdateTableShoes;
         private System.Windows.Forms.Button ConfigShoe;
         private System.Windows.Forms.Label FastButtons;
         private System.Windows.Forms.Button OptionsButton;

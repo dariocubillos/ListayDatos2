@@ -77,39 +77,36 @@ namespace ListayDatos2.SQLClasses
                 return false;
             }
         }
-        public bool ExecuteQuery( string query)
+        public void ExecuteQuery( string query)
         {
-            MySqlDataAdapter da = new MySqlDataAdapter();
-
+            MySqlCommand ComandDelete = new MySqlCommand(query, conn);
+            MySqlDataReader ComandReader;
             try
             {
                 conn = new MySqlConnection(ConnString());
                 conn.Open();
-                da = new MySqlDataAdapter(query, conn);
-                conn.Close();
-
+                ComandReader = ComandDelete.ExecuteReader();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
 
-                return false;
             }
 
-
-            return true;
         }
+
+
 
 
         public MySqlDataAdapter ExecuteQueryAndGetData(string query)
         {
-            MySqlDataAdapter da = new MySqlDataAdapter();
+            MySqlDataAdapter dataGet = new MySqlDataAdapter();
 
             try
             {
                 conn = new MySqlConnection(ConnString());
                 conn.Open();
-                da = new MySqlDataAdapter(query, conn);
+                dataGet = new MySqlDataAdapter(query, conn);
                 conn.Close();
 
             }
@@ -119,7 +116,7 @@ namespace ListayDatos2.SQLClasses
 
             }
 
-            return da;
+            return dataGet;
         }
 
         public DataTable DataMySqlToDataTable(MySqlDataAdapter ObjectMysql,string TableName )

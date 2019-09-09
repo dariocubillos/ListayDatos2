@@ -9,14 +9,16 @@ using System.Text;
 using System.Windows.Forms;
 using ListayDatos2.SQLClasses;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace ListayDatos2
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string[] HiddenColumns = new string[] { "idZapato", "Color", "idProveedor", "Foto", "Medios", "idUbicacion" };
+        
 
-        public Form1()
+        public MainForm()
         {
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             // Set the MaximizeBox to false to remove the maximize box.
@@ -54,6 +56,12 @@ namespace ListayDatos2
 
         protected void StartMainTable()
         {
+            this.StartRowsView();
+            this.AddItemsShow();
+        }       
+
+        protected void StartRowsView()
+        {
             MainConn NewConObj = new MainConn();
             MySqlDataAdapter ObjAdapterZapatos = NewConObj.ExecuteQueryAndGetData("SELECT * FROM zapatosyexists");
             this.MainGrid.Visible = true;
@@ -62,7 +70,13 @@ namespace ListayDatos2
             this.MainGrid.DataSource = NewConObj.DataMySqlToDataTable(ObjAdapterZapatos, "zapatosyexists");
             this.HideColumnsMainTable();
             this.AutoSizeColums();
-            this.AddItemsShow();
+        }
+
+        protected void AutoSizeColums()
+        {
+            MainGrid.Width =
+            MainGrid.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width)
+            + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
         }
 
         protected void AddItemsShow()
@@ -88,15 +102,22 @@ namespace ListayDatos2
             }
         }
 
-        protected void AutoSizeColums()
+        private void MainGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            MainGrid.Width =
-            MainGrid.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width)
-            + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
+            for (int i = 0; i < MainGrid.Rows.Count - 1; i++)
+            {
+                if (int.Parse(MainGrid.Rows[i].Cells["Existencia"].Value.ToString()) == 0)
+                {
+                    MainGrid.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+                else if (int.Parse(MainGrid.Rows[i].Cells["Existencia"].Value.ToString()) <= 2)
+                {
+                    MainGrid.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
 
-        }
+            }
+        }     
         
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -139,7 +160,6 @@ namespace ListayDatos2
                     return string.Empty;
             }
 
-
         }
 
         private void DeleteShoe_Click(object sender, EventArgs e)
@@ -170,6 +190,7 @@ namespace ListayDatos2
                 if (dr == DialogResult.Yes)
                 {
                 }
+
             }
             else
             {
@@ -195,28 +216,86 @@ namespace ListayDatos2
         {
             return MessageBox.Show(MainMessage, Title, MessageBoxButtons.OK
                                     , MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-        }
+        }        
 
-        private void AddShoe_Click(object sender, EventArgs e)
+        private  void NoExistsButton_Click(object sender, EventArgs e)
+        {
+            MainConn NewConObj = new MainConn();
+
+            NoExistsButton.Enabled = false;
+
+            for (int i = 0; i < MainGrid.Rows.Count - 1; i++)
+            {
+                if (int.Parse(MainGrid.Rows[i].Cells["Existencia"].Value.ToString()) == 0)
+                {
+                    //Delete items whit zero exists
+                    NewConObj.ExecuteQuery("DELETE FROM zapateria.zapatos WHERE idZapato = "
+                               + int.Parse(MainGrid.Rows[i].Cells["idZapato"].Value.ToString()));
+                }
+            }
+            for (int i = 0; i < this.MainGrid.Rows.Count - 1; i++)
+            {
+                if (int.Parse(MainGrid.Rows[i].Cells["Existencia"].Value.ToString()) == 0)
+                {
+                    //Delete items whit zero exists
+                    NewConObj.ExecuteQuery("DELETE FROM zapateria.zapatos WHERE idZapato = "
+                               + int.Parse(MainGrid.Rows[i].Cells["idZapato"].Value.ToString()));
+                }
+            }
+            this.StartRowsView();
+            NoExistsButton.Enabled = true;           
+           
+        }        
+
+
+        protected int getselectedrowmodelorid(string option)
         {
 
-        }
+            int optselect;
 
-        private void NoExistsButton_Click(object sender, EventArgs e)
-        {
+            switch (option)
+            {
+                case "id":
+                    optselect = 0;
+                    break;
+
+                case "code":
+                    optselect = 1;
+                    break;
+
+                default:
+                    optselect = 0;
+                    break;
+            }
+
+
+            if (MainGrid.SelectedCells.Count > 0)
+            {
+                return int.Parse(MainGrid.SelectedCells[optselect].Value.ToString());
+            }
+            else
+            {
+                return -1;
+            }
 
         }
 
         private void ConfigShoe_Click(object sender, EventArgs e)
         {
-
+            AddConfigShoe AddConfigShoeObject = new AddConfigShoe();
+            AddConfigShoeObject.Text = "Confgurar : " + getselectedrowmodelorid("code");
+            AddConfigShoeObject.Show();
         }
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
-
+            OptionsForm OptionObjectForm = new OptionsForm();
+            OptionObjectForm.Show();
         }
 
-        
+        private void UpdateTableShoes_Click(object sender, EventArgs e)
+        {
+            this.StartRowsView();
+        }
     }
 }
