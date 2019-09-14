@@ -58,6 +58,8 @@ namespace ListayDatos2
         {
             this.StartRowsView();
             this.AddItemsShow();
+            this.AddSerachByCombo();
+
         }       
 
         protected void StartRowsView()
@@ -77,6 +79,16 @@ namespace ListayDatos2
             MainGrid.Width =
             MainGrid.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width)
             + (MainGrid.RowHeadersVisible ? MainGrid.RowHeadersWidth : 0) + 3;
+        }
+
+        protected void AddSerachByCombo()
+        {
+            SearchBy.Items.Add("Codigo");
+            SearchBy.Items.Add("Marca");
+            SearchBy.Items.Add("Modelo");
+            SearchBy.Items.Add("Tacon");
+            SearchBy.Items.Add("Existencia");
+            SearchBy.SelectedIndex = 0;
         }
 
         protected void AddItemsShow()
@@ -116,7 +128,27 @@ namespace ListayDatos2
                 }
 
             }
-        }     
+
+            this.SetCountersLabels();
+        }
+
+        protected void SetCountersLabels()
+        {
+            this.ShoesCount.Text = GetNumberShoes();
+            this.CodeCount.Text = this.MainGrid.Rows.Count.ToString();
+        }
+        
+        protected string GetNumberShoes()
+        {
+            int result = 0;
+
+            for (int i = 0; i < MainGrid.Rows.Count-1; i++)
+            {                
+               result += int.Parse( MainGrid.Rows[i].Cells["Existencia"].Value.ToString());                  
+            }
+
+            return result.ToString();
+        }
         
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -129,8 +161,45 @@ namespace ListayDatos2
             TextBox model = (TextBox)sender;
             BindingSource bs = new BindingSource();
             bs.DataSource = MainGrid.DataSource;
-            bs.Filter = "Codigo like '%" + model.Text + "%'";
-            MainGrid.DataSource = bs;
+
+            if (model.Text != string.Empty)
+            {
+                if (this.SearchBy.SelectedItem.ToString() == "Existencia")
+                {
+                    int val;
+                    if (!int.TryParse(model.Text, out val))
+                    {
+                        this.AlertGenericOK("Solo puede Introducir numeros.", "Alerta");
+                        model.Text = string.Empty;
+                        this.GenericMainGridReload();
+                        model.Undo();
+                    }
+                    else
+                    {
+                        bs.Filter = this.SearchBy.SelectedItem.ToString() + " = " + model.Text;
+
+                    }
+                }
+                else
+                {
+                    bs.Filter = this.SearchBy.SelectedItem.ToString() + " like '%" + model.Text + "%'";
+                }
+
+
+                MainGrid.DataSource = bs;
+            }
+            else
+            {
+                this.GenericMainGridReload();
+            }
+            
+        }
+
+        private void GenericMainGridReload()
+        {
+            this.StartRowsView();
+            this.MainGrid.Update();
+            this.MainGrid.Refresh();
         }
 
         private void SelectFilter(object sender, EventArgs e)

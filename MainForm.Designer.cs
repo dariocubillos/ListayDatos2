@@ -36,6 +36,11 @@
             this.ConfigShoe = new System.Windows.Forms.Button();
             this.FastButtons = new System.Windows.Forms.Label();
             this.OptionsButton = new System.Windows.Forms.Button();
+            this.SearchBy = new System.Windows.Forms.ComboBox();
+            this.NumberLabel = new System.Windows.Forms.Label();
+            this.Labelcodigos = new System.Windows.Forms.Label();
+            this.ShoesCount = new System.Windows.Forms.Label();
+            this.CodeCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MainGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +66,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 6);
+            this.textBox1.Location = new System.Drawing.Point(209, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 20);
             this.textBox1.TabIndex = 2;
@@ -70,16 +75,16 @@
             // BuscarLabel
             // 
             this.BuscarLabel.AutoSize = true;
-            this.BuscarLabel.Location = new System.Drawing.Point(9, 9);
+            this.BuscarLabel.Location = new System.Drawing.Point(12, 9);
             this.BuscarLabel.Name = "BuscarLabel";
-            this.BuscarLabel.Size = new System.Drawing.Size(97, 13);
+            this.BuscarLabel.Size = new System.Drawing.Size(64, 13);
             this.BuscarLabel.TabIndex = 3;
-            this.BuscarLabel.Text = "Buscar por Codigo:";
+            this.BuscarLabel.Text = "Buscar por :";
             // 
             // showby
             // 
             this.showby.AutoSize = true;
-            this.showby.Location = new System.Drawing.Point(325, 8);
+            this.showby.Location = new System.Drawing.Point(472, 9);
             this.showby.Name = "showby";
             this.showby.Size = new System.Drawing.Size(26, 13);
             this.showby.TabIndex = 4;
@@ -88,9 +93,9 @@
             // ShowByItems
             // 
             this.ShowByItems.FormattingEnabled = true;
-            this.ShowByItems.Location = new System.Drawing.Point(357, 5);
+            this.ShowByItems.Location = new System.Drawing.Point(504, 5);
             this.ShowByItems.Name = "ShowByItems";
-            this.ShowByItems.Size = new System.Drawing.Size(299, 21);
+            this.ShowByItems.Size = new System.Drawing.Size(152, 21);
             this.ShowByItems.TabIndex = 5;
             this.ShowByItems.SelectedIndexChanged += new System.EventHandler(this.SelectFilter);
             // 
@@ -144,11 +149,64 @@
             this.OptionsButton.UseVisualStyleBackColor = true;
             this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
             // 
+            // SearchBy
+            // 
+            this.SearchBy.FormattingEnabled = true;
+            this.SearchBy.Location = new System.Drawing.Point(82, 6);
+            this.SearchBy.Name = "SearchBy";
+            this.SearchBy.Size = new System.Drawing.Size(121, 21);
+            this.SearchBy.TabIndex = 11;
+            // 
+            // NumberLabel
+            // 
+            this.NumberLabel.AutoSize = true;
+            this.NumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumberLabel.Location = new System.Drawing.Point(8, 382);
+            this.NumberLabel.Name = "NumberLabel";
+            this.NumberLabel.Size = new System.Drawing.Size(123, 20);
+            this.NumberLabel.TabIndex = 12;
+            this.NumberLabel.Text = "Total zapatos:";
+            // 
+            // Labelcodigos
+            // 
+            this.Labelcodigos.AutoSize = true;
+            this.Labelcodigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Labelcodigos.Location = new System.Drawing.Point(205, 382);
+            this.Labelcodigos.Name = "Labelcodigos";
+            this.Labelcodigos.Size = new System.Drawing.Size(146, 20);
+            this.Labelcodigos.TabIndex = 14;
+            this.Labelcodigos.Text = "Total de codigos:";
+            // 
+            // ShoesCount
+            // 
+            this.ShoesCount.AutoSize = true;
+            this.ShoesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShoesCount.Location = new System.Drawing.Point(137, 382);
+            this.ShoesCount.Name = "ShoesCount";
+            this.ShoesCount.Size = new System.Drawing.Size(19, 20);
+            this.ShoesCount.TabIndex = 15;
+            this.ShoesCount.Text = "0";
+            // 
+            // CodeCount
+            // 
+            this.CodeCount.AutoSize = true;
+            this.CodeCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CodeCount.Location = new System.Drawing.Point(357, 382);
+            this.CodeCount.Name = "CodeCount";
+            this.CodeCount.Size = new System.Drawing.Size(19, 20);
+            this.CodeCount.TabIndex = 16;
+            this.CodeCount.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 389);
+            this.ClientSize = new System.Drawing.Size(898, 411);
+            this.Controls.Add(this.CodeCount);
+            this.Controls.Add(this.ShoesCount);
+            this.Controls.Add(this.Labelcodigos);
+            this.Controls.Add(this.NumberLabel);
+            this.Controls.Add(this.SearchBy);
             this.Controls.Add(this.OptionsButton);
             this.Controls.Add(this.FastButtons);
             this.Controls.Add(this.NoExistsButton);
@@ -180,6 +238,11 @@
         private System.Windows.Forms.Button ConfigShoe;
         private System.Windows.Forms.Label FastButtons;
         private System.Windows.Forms.Button OptionsButton;
+        private System.Windows.Forms.ComboBox SearchBy;
+        private System.Windows.Forms.Label NumberLabel;
+        private System.Windows.Forms.Label Labelcodigos;
+        private System.Windows.Forms.Label ShoesCount;
+        private System.Windows.Forms.Label CodeCount;
     }
 }
 
