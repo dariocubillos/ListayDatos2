@@ -56,9 +56,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 46);
+            this.textBox1.Location = new System.Drawing.Point(73, 46);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 20);
+            this.textBox1.Size = new System.Drawing.Size(265, 20);
             this.textBox1.TabIndex = 1;
             // 
             // SaveButton
@@ -82,9 +82,9 @@
             // textBox2
             // 
             this.textBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
-            this.textBox2.Location = new System.Drawing.Point(53, 72);
+            this.textBox2.Location = new System.Drawing.Point(73, 72);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(285, 20);
+            this.textBox2.Size = new System.Drawing.Size(265, 20);
             this.textBox2.TabIndex = 5;
             // 
             // MarkLabel
@@ -100,9 +100,9 @@
             // textBox3
             // 
             this.textBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
-            this.textBox3.Location = new System.Drawing.Point(53, 98);
+            this.textBox3.Location = new System.Drawing.Point(73, 98);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(285, 20);
+            this.textBox3.Size = new System.Drawing.Size(265, 20);
             this.textBox3.TabIndex = 7;
             // 
             // ModelLabel
@@ -117,9 +117,9 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(53, 124);
+            this.textBox4.Location = new System.Drawing.Point(73, 124);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(285, 20);
+            this.textBox4.Size = new System.Drawing.Size(265, 20);
             this.textBox4.TabIndex = 9;
             // 
             // TaconLabel
@@ -135,17 +135,17 @@
             // 
             this.label1.AccessibleRole = System.Windows.Forms.AccessibleRole.Clock;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 153);
+            this.label1.Location = new System.Drawing.Point(12, 151);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Tacon";
+            this.label1.Text = "Existencia";
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(53, 151);
+            this.numericUpDown1.Location = new System.Drawing.Point(73, 151);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(285, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(265, 20);
             this.numericUpDown1.TabIndex = 12;
             // 
             // CodeIDBigLabel
@@ -210,5 +210,35 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label CodeIDBigLabel;
         private System.Windows.Forms.Label CodeSelectLabel;
+
+        public void setCodeSelectLabel(string code)
+        {
+            this.CodeSelectLabel.Text = code;
+        }
+
+        public void setCodeConfigSelectLabel(string code)
+        {
+            this.textBox1.Text = code;
+        }
+
+        public void setMarkSelectLabel(string mark)
+        {
+            this.textBox2.Text = mark;
+        }
+
+        public void setModelSelectLabel(string model)
+        {
+            this.textBox3.Text = model;
+        }
+
+        public void setTaconSelectLabel(string tacon)
+        {
+            this.textBox4.Text = tacon;
+        }
+
+        public void setExistSelectLabel(int num)
+        {
+            this.numericUpDown1.Value = num;
+        }
     }
 }

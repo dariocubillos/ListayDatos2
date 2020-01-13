@@ -237,7 +237,7 @@ namespace ListayDatos2
             MainConn NewConObj = new MainConn();
 
             string code = string.Empty;
-            int numshoes = -1;
+            int numshoes = selectionCol.Count;
 
             if (selectionCol.Count == 1)
             {
@@ -259,12 +259,17 @@ namespace ListayDatos2
             {
                  //get all items in this par for all rows and columns  and for delete
 
-                DialogResult dr = AlertGenericYesNo("Desea eliminar los " + numshoes + " ?", "Confirmar");
+                DialogResult dr = AlertGenericYesNo("Desea eliminar los " + numshoes + " zapatos ?", "Confirmar");
 
                 if (dr == DialogResult.Yes)
                 {
                     // delete multiple shoes
-
+                    for (int i = 0; i < selectionCol.Count; i++)
+                    {
+                        NewConObj.ExecuteQuery("DELETE FROM zapateria.zapatos WHERE idZapato = "
+                               + int.Parse(selectionCol[i].Cells[0].Value.ToString()));
+                    }
+                    this.GenericMainGridReload();
                 }
 
             }
@@ -365,9 +370,19 @@ namespace ListayDatos2
 
         private void ConfigShoe_Click(object sender, EventArgs e)
         {
+            DataGridViewSelectedRowCollection selection = (DataGridViewSelectedRowCollection)MainGrid.SelectedRows;
+            DataGridViewRow Selectedrow = selection[0];
             AddConfigShoe AddConfigShoeObject = new AddConfigShoe();
             AddConfigShoeObject.Text = "Confgurar : " + getselectedrowmodelorid("code");
             AddConfigShoeObject.Show();
+
+            AddConfigShoeObject.setCodeSelectLabel(Selectedrow.Cells[1].Value.ToString());
+            AddConfigShoeObject.setCodeConfigSelectLabel(Selectedrow.Cells[1].Value.ToString());
+            AddConfigShoeObject.setMarkSelectLabel(Selectedrow.Cells[2].Value.ToString());
+            AddConfigShoeObject.setModelSelectLabel(Selectedrow.Cells[3].Value.ToString());
+            AddConfigShoeObject.setTaconSelectLabel(Selectedrow.Cells[4].Value.ToString());
+            AddConfigShoeObject.setExistSelectLabel(Int32.Parse(Selectedrow.Cells[5].Value.ToString()));
+
         }
 
         private void OptionsButton_Click(object sender, EventArgs e)

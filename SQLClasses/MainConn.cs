@@ -86,7 +86,7 @@ namespace ListayDatos2.SQLClasses
                 MySqlDataReader ComandReader;
                 conn.Open();
                 ComandReader = ComandDelete.ExecuteReader();
-            }
+                }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
@@ -94,9 +94,6 @@ namespace ListayDatos2.SQLClasses
             }
 
         }
-
-
-
 
         public MySqlDataAdapter ExecuteQueryAndGetData(string query)
         {
