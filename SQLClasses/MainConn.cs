@@ -78,12 +78,12 @@ namespace ListayDatos2.SQLClasses
             }
         }
         public void ExecuteQuery( string query)
-        {
-            MySqlCommand ComandDelete = new MySqlCommand(query, conn);
-            MySqlDataReader ComandReader;
+        {   
             try
             {
                 conn = new MySqlConnection(ConnString());
+                MySqlCommand ComandDelete = new MySqlCommand(query, conn);
+                MySqlDataReader ComandReader;
                 conn.Open();
                 ComandReader = ComandDelete.ExecuteReader();
             }

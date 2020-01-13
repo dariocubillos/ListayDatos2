@@ -234,6 +234,7 @@ namespace ListayDatos2
         private void DeleteShoe_Click(object sender, EventArgs e)
         {
             DataGridViewSelectedRowCollection selectionCol = (DataGridViewSelectedRowCollection)MainGrid.SelectedRows;
+            MainConn NewConObj = new MainConn();
 
             string code = string.Empty;
             int numshoes = -1;
@@ -248,6 +249,10 @@ namespace ListayDatos2
                                                     "con el codigo: "+ code + " ?","Confirmar");
                 if (dr == DialogResult.Yes)
                 {
+                    //delete one shoe
+                    NewConObj.ExecuteQuery("DELETE FROM zapateria.zapatos WHERE idZapato = "
+                               + int.Parse(GetIDZapatoSelectedOneRowTableView().ToString()));
+                    this.GenericMainGridReload();
                 }
             }
             else if (selectionCol.Count > 1)
@@ -258,6 +263,8 @@ namespace ListayDatos2
 
                 if (dr == DialogResult.Yes)
                 {
+                    // delete multiple shoes
+
                 }
 
             }
@@ -273,7 +280,14 @@ namespace ListayDatos2
              int selectedrowindex = MainGrid.SelectedCells[0].RowIndex;
              DataGridViewRow selectedRow = MainGrid.Rows[selectedrowindex];
              return int.Parse(selectedRow.Cells["Codigo"].Value.ToString());          
-        }        
+        }
+
+        protected int GetIDZapatoSelectedOneRowTableView()
+        {
+            int selectedrowindex = MainGrid.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = MainGrid.Rows[selectedrowindex];
+            return int.Parse(selectedRow.Cells["idZapato"].Value.ToString());
+        }
 
         protected DialogResult AlertGenericYesNo(string MainMessage, string Title)
         {
