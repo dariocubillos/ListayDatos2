@@ -69,6 +69,7 @@
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Guardar";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // CancelButton
             // 
@@ -78,6 +79,7 @@
             this.CancelButton.TabIndex = 3;
             this.CancelButton.Text = "Cancelar";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // textBox2
             // 
@@ -199,7 +201,7 @@
         private System.Windows.Forms.Label CodeLabel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button CancelButton;
+        private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label MarkLabel;
         private System.Windows.Forms.TextBox textBox3;

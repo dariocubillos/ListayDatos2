@@ -372,7 +372,9 @@ namespace ListayDatos2
         {
             DataGridViewSelectedRowCollection selection = (DataGridViewSelectedRowCollection)MainGrid.SelectedRows;
             DataGridViewRow Selectedrow = selection[0];
-            AddConfigShoe AddConfigShoeObject = new AddConfigShoe();
+            
+
+            AddConfigShoe AddConfigShoeObject = new AddConfigShoe(int.Parse(GetIDZapatoSelectedOneRowTableView().ToString()));
             AddConfigShoeObject.Text = "Confgurar : " + getselectedrowmodelorid("code");
             AddConfigShoeObject.Show();
 
