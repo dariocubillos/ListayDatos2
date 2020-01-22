@@ -32,7 +32,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.MarkLabel = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.ModelLabel = new System.Windows.Forms.Label();
@@ -42,6 +41,8 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.CodeIDBigLabel = new System.Windows.Forms.Label();
             this.CodeSelectLabel = new System.Windows.Forms.Label();
+            this.markSelect = new System.Windows.Forms.ComboBox();
+            this.addMarkpopup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,14 +81,6 @@
             this.CancelButton.Text = "Cancelar";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
-            this.textBox2.Location = new System.Drawing.Point(73, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(265, 20);
-            this.textBox2.TabIndex = 5;
             // 
             // MarkLabel
             // 
@@ -170,11 +163,31 @@
             this.CodeSelectLabel.TabIndex = 14;
             this.CodeSelectLabel.Text = "000000";
             // 
+            // markSelect
+            // 
+            this.markSelect.FormattingEnabled = true;
+            this.markSelect.Location = new System.Drawing.Point(73, 72);
+            this.markSelect.Name = "markSelect";
+            this.markSelect.Size = new System.Drawing.Size(181, 21);
+            this.markSelect.TabIndex = 15;
+            // 
+            // addMarkpopup
+            // 
+            this.addMarkpopup.Location = new System.Drawing.Point(263, 70);
+            this.addMarkpopup.Name = "addMarkpopup";
+            this.addMarkpopup.Size = new System.Drawing.Size(75, 23);
+            this.addMarkpopup.TabIndex = 16;
+            this.addMarkpopup.Text = "Agregar";
+            this.addMarkpopup.UseVisualStyleBackColor = true;
+            this.addMarkpopup.Click += new System.EventHandler(this.addMarkpopup_Click);
+            // 
             // AddConfigShoe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 212);
+            this.Controls.Add(this.addMarkpopup);
+            this.Controls.Add(this.markSelect);
             this.Controls.Add(this.CodeSelectLabel);
             this.Controls.Add(this.CodeIDBigLabel);
             this.Controls.Add(this.numericUpDown1);
@@ -183,7 +196,6 @@
             this.Controls.Add(this.TaconLabel);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.ModelLabel);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.MarkLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
@@ -202,7 +214,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button SaveButton;
         private new System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label MarkLabel;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label ModelLabel;
@@ -223,11 +234,6 @@
             this.textBox1.Text = code;
         }
 
-        public void setMarkSelectLabel(string mark)
-        {
-            this.textBox2.Text = mark;
-        }
-
         public void setModelSelectLabel(string model)
         {
             this.textBox3.Text = model;
@@ -242,5 +248,8 @@
         {
             this.numericUpDown1.Value = num;
         }
+
+        private System.Windows.Forms.ComboBox markSelect;
+        private System.Windows.Forms.Button addMarkpopup;
     }
 }

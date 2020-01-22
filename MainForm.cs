@@ -374,13 +374,12 @@ namespace ListayDatos2
             DataGridViewRow Selectedrow = selection[0];
             
 
-            AddConfigShoe AddConfigShoeObject = new AddConfigShoe(int.Parse(GetIDZapatoSelectedOneRowTableView().ToString()));
+            AddConfigShoe AddConfigShoeObject = new AddConfigShoe(int.Parse(GetIDZapatoSelectedOneRowTableView().ToString()), Selectedrow.Cells[2].Value.ToString());
             AddConfigShoeObject.Text = "Confgurar : " + getselectedrowmodelorid("code");
             AddConfigShoeObject.Show();
 
             AddConfigShoeObject.setCodeSelectLabel(Selectedrow.Cells[1].Value.ToString());
             AddConfigShoeObject.setCodeConfigSelectLabel(Selectedrow.Cells[1].Value.ToString());
-            AddConfigShoeObject.setMarkSelectLabel(Selectedrow.Cells[2].Value.ToString());
             AddConfigShoeObject.setModelSelectLabel(Selectedrow.Cells[3].Value.ToString());
             AddConfigShoeObject.setTaconSelectLabel(Selectedrow.Cells[4].Value.ToString());
             AddConfigShoeObject.setExistSelectLabel(Int32.Parse(Selectedrow.Cells[5].Value.ToString()));
