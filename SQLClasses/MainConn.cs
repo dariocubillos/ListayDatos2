@@ -5,6 +5,9 @@ using System.Text;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Collections;
 
 namespace ListayDatos2.SQLClasses
 {
@@ -78,7 +81,7 @@ namespace ListayDatos2.SQLClasses
             }
         }
         public void ExecuteQuery( string query)
-        {   
+        {
             try
             {
                 conn = new MySqlConnection(ConnString());
@@ -86,11 +89,16 @@ namespace ListayDatos2.SQLClasses
                 MySqlDataReader ComandReader;
                 conn.Open();
                 ComandReader = ComandDelete.ExecuteReader();
-                }
+            }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
-
+                    MessageBox.Show("Error en la base de datos posible duplicado o " +
+                        "dato invalido cambie los valores que esta operando.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
 
         }

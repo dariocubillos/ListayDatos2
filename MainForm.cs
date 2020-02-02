@@ -383,6 +383,7 @@ namespace ListayDatos2
             AddConfigShoeObject.setModelSelectLabel(Selectedrow.Cells[3].Value.ToString());
             AddConfigShoeObject.setTaconSelectLabel(Selectedrow.Cells[4].Value.ToString());
             AddConfigShoeObject.setExistSelectLabel(Int32.Parse(Selectedrow.Cells[5].Value.ToString()));
+            AddConfigShoeObject.FormClosing += new FormClosingEventHandler(UpdateTableShoes_Click); // update event when closing
 
         }
 

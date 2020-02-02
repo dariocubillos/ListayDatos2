@@ -15,5 +15,20 @@ namespace ListayDatos2
         {
             InitializeComponent();
         }
+
+        private void backupButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void importBackup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guardarConn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

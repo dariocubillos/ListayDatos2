@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace ListayDatos2
 {
@@ -25,7 +26,7 @@ namespace ListayDatos2
             this.configureMarks();
         }
 
-        private void configureMarks()
+        private void configureMarks(string newMark=null)
         {
             MySqlDataAdapter objAdapterMarcas = NewConObj.ExecuteQueryAndGetData("SELECT * FROM marcas");
             this.markTable = NewConObj.DataMySqlToDataTable(objAdapterMarcas, "marcas");
@@ -35,12 +36,24 @@ namespace ListayDatos2
                 arrayMarks[i] = this.markTable.Rows[i].Field<string>("Marca");
             }
             this.markSelect.DataSource = arrayMarks;
-
-            for (int i = 0; i < this.markSelect.Items.Count; i++)
+            if (newMark == null)
             {
-                if (this.markSelect.Items[i].ToString() == this.mark)
+                for (int i = 0; i < this.markSelect.Items.Count; i++)
                 {
-                    this.markSelect.SelectedIndex = i;
+                    if (this.markSelect.Items[i].ToString() == this.mark)
+                    {
+                        this.markSelect.SelectedIndex = i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < this.markSelect.Items.Count; i++)
+                {
+                    if (this.markSelect.Items[i].ToString() == newMark)
+                    {
+                        this.markSelect.SelectedIndex = i;
+                    }
                 }
             }
 
@@ -64,18 +77,25 @@ namespace ListayDatos2
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            string code = this.CodeIDBigLabel.Text;
-            
-            string mark = this.MarkLabel.Text;  // select  marca check if exists or new
-
-            string model = this.ModelLabel.Text;
-            string tacon = this.TaconLabel.Text;
+            string code = this.codeInput.Text;
+            string mark = this.markSelect.Text;  // select  marca check if exists or new
+            string model = this.modelInput.Text;
+            string tacon = this.taconInput.Text;
             int exists = int.Parse(this.numericUpDown1.Value.ToString());
-
-            string query = "UPDATE zapatos  " +
+            // future prevent double queryes
+            string query = 
+                "UPDATE zapatos  " +
                 "set codigo ='"+code+"', " +
-                "idMarca = " + this.getIdMark(mark) + ", tacon ='"+tacon+"', existencia ="+exists +" WHERE idZapato = "+ IdShoe;  // id marca select new 
-            NewConObj.ExecuteQuery(query);
+                "idMarca = " + this.getIdMark(mark) + ", " +
+                "Modelo = '"+ model + "',"+
+                "tacon ='"+tacon+"' "+
+                " WHERE idZapato = "+ IdShoe;  // id marca select new 
+            string queryExists = 
+                "UPDATE tallas set Existencia ="+ exists +
+                " WHERE idZapato= "+ IdShoe + " AND "+
+                "Talla = 8";
+                NewConObj.ExecuteQuery(query);
+                NewConObj.ExecuteQuery(queryExists);
 
         }
 
@@ -86,6 +106,15 @@ namespace ListayDatos2
 
         private void addMarkpopup_Click(object sender, EventArgs e)
         {
+            string input = Interaction.InputBox
+                ("Introdusca su nueva marca a registrar.", "Nueva marca", "", -1, -1);
+
+            if (input != null && input != "")
+            {
+                string query = "INSERT INTO `marcas` (`idMarca`, `Marca`) VALUES (NULL, '"+input+"')";
+                NewConObj.ExecuteQuery(query);
+                this.configureMarks(input);
+            }
 
         }
     }

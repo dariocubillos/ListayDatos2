@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.CodeLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.codeInput = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.MarkLabel = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.modelInput = new System.Windows.Forms.TextBox();
             this.ModelLabel = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.taconInput = new System.Windows.Forms.TextBox();
             this.TaconLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -55,12 +55,12 @@
             this.CodeLabel.TabIndex = 0;
             this.CodeLabel.Text = "Codigo";
             // 
-            // textBox1
+            // codeInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(73, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 20);
-            this.textBox1.TabIndex = 1;
+            this.codeInput.Location = new System.Drawing.Point(73, 46);
+            this.codeInput.Name = "codeInput";
+            this.codeInput.Size = new System.Drawing.Size(265, 20);
+            this.codeInput.TabIndex = 1;
             // 
             // SaveButton
             // 
@@ -92,13 +92,13 @@
             this.MarkLabel.TabIndex = 4;
             this.MarkLabel.Text = "Marca";
             // 
-            // textBox3
+            // modelInput
             // 
-            this.textBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
-            this.textBox3.Location = new System.Drawing.Point(73, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(265, 20);
-            this.textBox3.TabIndex = 7;
+            this.modelInput.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
+            this.modelInput.Location = new System.Drawing.Point(73, 98);
+            this.modelInput.Name = "modelInput";
+            this.modelInput.Size = new System.Drawing.Size(265, 20);
+            this.modelInput.TabIndex = 7;
             // 
             // ModelLabel
             // 
@@ -110,12 +110,12 @@
             this.ModelLabel.TabIndex = 6;
             this.ModelLabel.Text = "Modelo";
             // 
-            // textBox4
+            // taconInput
             // 
-            this.textBox4.Location = new System.Drawing.Point(73, 124);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(265, 20);
-            this.textBox4.TabIndex = 9;
+            this.taconInput.Location = new System.Drawing.Point(73, 124);
+            this.taconInput.Name = "taconInput";
+            this.taconInput.Size = new System.Drawing.Size(265, 20);
+            this.taconInput.TabIndex = 9;
             // 
             // TaconLabel
             // 
@@ -192,14 +192,14 @@
             this.Controls.Add(this.CodeIDBigLabel);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.taconInput);
             this.Controls.Add(this.TaconLabel);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.modelInput);
             this.Controls.Add(this.ModelLabel);
             this.Controls.Add(this.MarkLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.codeInput);
             this.Controls.Add(this.CodeLabel);
             this.Name = "AddConfigShoe";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -211,13 +211,13 @@
         #endregion
 
         private System.Windows.Forms.Label CodeLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox codeInput;
         private System.Windows.Forms.Button SaveButton;
         private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label MarkLabel;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox modelInput;
         private System.Windows.Forms.Label ModelLabel;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox taconInput;
         private System.Windows.Forms.Label TaconLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
@@ -231,17 +231,17 @@
 
         public void setCodeConfigSelectLabel(string code)
         {
-            this.textBox1.Text = code;
+            this.codeInput.Text = code;
         }
 
         public void setModelSelectLabel(string model)
         {
-            this.textBox3.Text = model;
+            this.modelInput.Text = model;
         }
 
         public void setTaconSelectLabel(string tacon)
         {
-            this.textBox4.Text = tacon;
+            this.taconInput.Text = tacon;
         }
 
         public void setExistSelectLabel(int num)
