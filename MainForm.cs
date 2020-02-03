@@ -391,6 +391,7 @@ namespace ListayDatos2
         {
             OptionsForm OptionObjectForm = new OptionsForm();
             OptionObjectForm.Show();
+            OptionObjectForm.FormClosing += new FormClosingEventHandler(UpdateTableShoes_Click); // update event when closing
         }
 
         private void UpdateTableShoes_Click(object sender, EventArgs e)

@@ -145,7 +145,7 @@
             this.OptionsButton.Name = "OptionsButton";
             this.OptionsButton.Size = new System.Drawing.Size(215, 64);
             this.OptionsButton.TabIndex = 10;
-            this.OptionsButton.Text = "OPCIÓNES";
+            this.OptionsButton.Text = "RESPALDO";
             this.OptionsButton.UseVisualStyleBackColor = true;
             this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
             // 

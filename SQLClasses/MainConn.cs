@@ -18,6 +18,7 @@ namespace ListayDatos2.SQLClasses
         string MysqlServerPassword = string.Empty;
         string MysqlServerDataBase = string.Empty;
         MySqlConnection conn = null;
+        string filebackup = "C:\\resp\\backup_no_borrar.sql";
 
 
         public MainConn()
@@ -89,6 +90,7 @@ namespace ListayDatos2.SQLClasses
                 MySqlDataReader ComandReader;
                 conn.Open();
                 ComandReader = ComandDelete.ExecuteReader();
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -134,7 +136,82 @@ namespace ListayDatos2.SQLClasses
             return dt;
         }
 
+        public void exportDatabase()
+        {
+            try
+            {
+                conn = new MySqlConnection(ConnString());
 
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+
+                        DialogResult yesnobackup = MessageBox.Show
+                            ("Desea exportar su respaldo y sobre escribir su respaldo previo?", "Respaldo", MessageBoxButtons.YesNo);
+
+                        if (yesnobackup == DialogResult.Yes)
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(this.filebackup);
+                            conn.Close();
+                            MessageBox.Show("Respaldo creado correctamente.", "Informacion");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Operacion cancelada.", "Informacion");
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+                MessageBox.Show("Error exportando posiblemente no exista la carpeta o permisos de escritura.", "Error");
+            }
+        }
+
+        public void importDatabase()
+        {
+            try
+            {
+                conn = new MySqlConnection(ConnString());
+
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+
+                        DialogResult yesnobackup = MessageBox.Show
+                            ("Desea importar su respaldo y remplazar su base de datos?","Respaldo", MessageBoxButtons.YesNo);
+
+                        if (yesnobackup == DialogResult.Yes)
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            cmd.CommandText = "SET GLOBAL  max_allowed_packet=1024*1024*1024;";
+                            cmd.ExecuteNonQuery();
+                            mb.ImportFromFile(this.filebackup);
+                            conn.Close();
+                            MessageBox.Show("Respaldo recuperado correctamente.", "Informacion");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Operacion cancelada." , "Informacion");
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+                MessageBox.Show("Error importando posiblemente no exista respaldo creado.", "Error");
+            }
+        }
 
     }
 }
