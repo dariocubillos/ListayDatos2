@@ -1,3 +1,5 @@
+SET GLOBAL  max_allowed_packet=1024*1024*1024;
+
 DROP VIEW IF EXISTS zapatosyexists; -- "OR REPLACE"
 
 create view zapatosyexists as 

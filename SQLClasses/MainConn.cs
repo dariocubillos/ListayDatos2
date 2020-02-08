@@ -185,7 +185,7 @@ namespace ListayDatos2.SQLClasses
                     {
 
                         DialogResult yesnobackup = MessageBox.Show
-                            ("Desea importar su respaldo y remplazar su base de datos?","Respaldo", MessageBoxButtons.YesNo);
+                            ("Desea importar su respaldo y remplazar su base de datos?", "Respaldo", MessageBoxButtons.YesNo);
 
                         if (yesnobackup == DialogResult.Yes)
                         {
@@ -200,7 +200,7 @@ namespace ListayDatos2.SQLClasses
                         }
                         else
                         {
-                            MessageBox.Show("Operacion cancelada." , "Informacion");
+                            MessageBox.Show("Operacion cancelada.", "Informacion");
                         }
                     }
                 }
